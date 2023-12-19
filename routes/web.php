@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ExampleController;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -99,3 +101,34 @@ Route::prefix('support')->group(function(){
                 });
 
     });
+
+
+    //    Route::fallback(function(){
+    //     return redirect('/');
+    //    });
+
+       //Route::view('CV',"cv");
+
+       Route::get('CV',function(){
+        return view('cv');
+       });
+    //   
+    //    Route::get('Login',function(){
+    //     return view('login');
+    //    });
+
+    //    Route::post('receive', function(){
+    //     return 'Data receive';
+    //    })-> name('receive');
+
+       Route::get('test1',[ExampleController::class,'test1']);
+       Route::get('login', [ExampleController::class,'login']);
+       Route::post('receive', [ExampleController::class,'receive']);
+       Route::get('storeCar', [CarController::class,'store'])->name('storeCar');
+       Route::get('addCar',[CarController::class, 'create']);
+       Route::get('cars', [CarController::class,'index']);
+       Route::get('editCar/{id}', [CarController::class,'Edit']);
+       Route::put('updateCar/{id}', [CarController::class,'update'])->name('updateCar');
+
+       Route::get('show-contact', [ContactController::class, 'show'])->name('contact');
+       Route::post('send-contact', [ContactController::class, 'send'])->name('Send');
